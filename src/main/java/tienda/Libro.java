@@ -62,4 +62,6 @@ public abstract class Libro extends Producto implements Comparable<Libro>{
     public int compareTo(Libro o) {
         return this.isbn.compareToIgnoreCase(o.isbn);
     }
+    
+    public abstract void tipoLibro();
 }

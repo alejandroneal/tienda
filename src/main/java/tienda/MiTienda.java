@@ -49,6 +49,7 @@ public class MiTienda {
         Producto pan2 = new Pantalon("XL", "Springfield", 32, 33.5, 0.21, 
         "Pantalón vaquero de la marca Springfield");
         
+        //Al introducir los datos en la lista se realiza conversiones implícitas
         List<Producto> listaProductos = new ArrayList<>();
         listaProductos.add(musica1);
         listaProductos.add(musica2);
@@ -91,7 +92,7 @@ public class MiTienda {
         List<Libro> listaLibros = new ArrayList<>();
         for (Producto producto : listaProductos) {
             if (producto instanceof Libro) {
-                listaLibros.add((Libro) producto);
+                listaLibros.add((Libro) producto); //Conversión explícita
             }
         }
         
@@ -112,5 +113,45 @@ public class MiTienda {
         
         //Recorre de nuevo la lista de libros y en cada iteración, ejecuta enviar() o descargar() 
         //en función del tipo de libro.
+         System.out.println("\n-----------------------------------------------------------------------------\n");
+        System.out.println("Ejecuto los métodos enviar() o descargar()-------------------------------------------------");
+        String direccion = "Calle nosecuantos nº5";
+        for (Libro libro : listaLibros) {
+            if (libro instanceof LibroPapel) {
+                ((LibroPapel) libro).enviar(direccion); //Conversión explícita
+            } else if (libro instanceof LibroDigital){
+                ((LibroDigital) libro).descargar(); //Conversión explícita
+            }
+        }
+        
+        //Utiliza el método contains(Object) sobre la lista de libros para comprobar si existe un 
+        //libro o no existe.
+        System.out.println("\n-----------------------------------------------------------------------------\n");
+        System.out.println("¿El libro dígtal libDig2 existe en la lista?: " + listaLibros.contains(libDig2));
+        
+        //Usando la lista de productos inicial, crea una nueva lista con todos los 
+        //objetos que SeEnvian.
+        List<SeEnvia> listaSeEnvian = new ArrayList<>();
+        for (Producto producto : listaProductos) {
+            if (producto instanceof SeEnvia) {
+                listaSeEnvian.add((SeEnvia) producto);
+            }
+        }
+        //listaSeEnvian.forEach(System.out::println);
+        
+        //Recorre la lista de objetos que Se Envian y llama al método de la interfaz.
+        System.out.println("\n-----------------------------------------------------------------------------\n");
+        System.out.println("Recorrer la lista SeEnvian mientras se llama al método----------------------------------");
+        for (SeEnvia seEnvia : listaSeEnvian) {
+            seEnvia.enviar(direccion);
+        }
+        
+        //Inventa un método abstracto en Libro que tenga comportamientos diferentes en 
+        //las subclases. Implementa los métodos en las clases hijas.
+        System.out.println("\n-----------------------------------------------------------------------------\n");
+        System.out.println("Recorrer la lista de libros mientras se llama al método abstracto de Libro-------------");
+        for (Libro libro : listaLibros) {
+            libro.tipoLibro();
+        }
     }
 }

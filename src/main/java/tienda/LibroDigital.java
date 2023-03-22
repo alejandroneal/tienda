@@ -39,4 +39,9 @@ public final class LibroDigital extends Libro implements SeDescarga {
     public void descargar() {
         System.out.println("http://alejandro.daw/" + hashCode());
     }
+
+    @Override
+    public void tipoLibro() {
+        System.out.println("El libro " + getIsbn() + " es un libro digital");
+    }
 }

@@ -40,4 +40,9 @@ public final class LibroPapel extends Libro implements SeEnvia {
         System.out.println("Libro de papel: " + getIsbn()
                 + ", tipo: " + getClass() + ", dirección: " + direccion);
     }
+
+    @Override
+    public void tipoLibro() {
+        System.out.println("El libro " + getIsbn() + " es un libro de papel");
+    }
 }
